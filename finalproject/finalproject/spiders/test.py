@@ -4,7 +4,7 @@ from google import search
 def showsome(searchfor):
     url = []
     for h in search(searchfor ,stop=20):
-      url.extend(h)
+      url.append(h)
     return url
-showsome('apple')
-print(url)
+#url = showsome('apple')
+#print(url)
