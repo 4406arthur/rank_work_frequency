@@ -1,10 +1,12 @@
-from scrapy.spider import BaseSpider
+from scrapy.spider import Spider
 from scrapy.selector import HtmlXPathSelector
 from wiki.items import WikiItem
 
-class WikiSpider(BaseSpider):
+class WikiSpider(Spider):
   name = 'wiki'
-  start_urls = ["http://en.wikipedia.org/wiki/Nba"]
+  def __init__(self, query=None, *args, **kwargs):
+    super(WikiSpider, self).__init__(*args, **kwargs)
+    self.start_urls = ['http://en.wikipedia.org/wiki/%s' % query]
   def parse(self,rep):
     hxs = HtmlXPathSelector(rep)
     item = WikiItem()   

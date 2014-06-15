@@ -1,17 +1,18 @@
-from scrapy.spider import BaseSpider
+from scrapy.spider import Spider
 from scrapy.selector import HtmlXPathSelector
 from finalproject.items import FinalprojectItem
-from search import showsome
+from test import showsome
 
-class StockSpider(BaseSpider):
-	name = 'finalproject'
-	#allowed_domains = ['br.financas.yahoo.com']
-	start_urls = showsome('NBA champion')
-	def parse(self, response):
-		self.log('URL: %s' % response.url)
+class StockSpider(Spider):
+    name = 'finalproject'
 
-		hxs = HtmlXPathSelector(response)
-		item = FinalprojectItem()
-		item['title'] = hxs.select('//title/text()').extract()
-		item['content'] = hxs.select('//p/text()').extract()
-		return item
+    def __init__(self, query=None, *args, **kwargs):
+        super(StockSpider, self).__init__(*args, **kwargs)
+        self.start_urls = showsome(query)
+    def parse(self, response):
+        self.log('URL: %s' % response.url)
+        hxs = HtmlXPathSelector(response)
+        item = FinalprojectItem()
+        item['title'] = hxs.select('//title/text()').extract()
+        item['content'] = hxs.select('//p/text()').extract()
+        return item
