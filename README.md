@@ -1,4 +1,5 @@
 rank_work_frequency
 ===================
 
-rank_work_frequency_in_google_search
+#using tool
+* http://breakingcode.wordpress.com/2010/06/29/google-search-python/
