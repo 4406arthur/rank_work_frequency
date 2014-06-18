@@ -1,0 +1,35 @@
+#/bin/sh
+OUTPUTFILENAME="result"
+function calculate_weight(){
+weight=0 
+while read line_keyword      
+do           
+    while read line_web
+    do
+        keyword=$(echo $line_keyword | tr -cd '[[:alpha:]]' | tr '[[:upper:]]' '[[:lower:]]' )
+        word=$(echo $line_web | tr -cd '[[:alpha:]]' | tr '[[:upper:]]' '[[:lower:]]' )
+        if [ $keyword == $word ]; then
+            num=$(echo $line_keyword | tr -cd '[[:digit:]]')
+            num2=$(echo $line_web | tr -cd '[[:digit:]]')
+	    weight=$(( $weight + $num * $num2 ))
+	    #echo "$keyword" . "$(( $num * $num2 ))"
+        fi
+    done < $2
+done < $1
+
+echo -n "$weight"
+
+}
+calculate_weight "data" "web1" > $OUTPUTFILENAME
+echo " web1" >> $OUTPUTFILENAME
+for i in $(seq -f '%01g' 2 $1)
+do
+    calculate_weight "data" "web$i" >> $OUTPUTFILENAME
+    echo " web$i" >> $OUTPUTFILENAME
+    #echo "web$i"
+done
+
+sort -n -r $OUTPUTFILENAME > r
+fin=$(sed -n '1p' < r | cut -d ' ' -f 2)
+rm $OUTPUTFILENAME r
+cp $fin result
