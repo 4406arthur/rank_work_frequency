@@ -9,4 +9,4 @@ class FinalprojectItem(Item):
     # define the fields for your item here like:
     title = Field()
     content = Field()
-    
+    url = Field()
