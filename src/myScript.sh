@@ -42,4 +42,8 @@ do
     echo "`./readGg.py ../finalproject/out/$file`" > websKey/$file
     echo "`./sort.sh websKey/$file`" > websKey/$file
 done
-
+#find best web
+time=2
+bestWeb=$(bash selector.sh $time)
+echo "find it $bestWeb"
+echo $(./readUrl.py "../finalproject/out/$bestWeb")
