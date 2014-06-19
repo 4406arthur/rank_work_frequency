@@ -6,3 +6,6 @@ def showsome(searchfor):
     for h in search(searchfor ,stop=10):
       url.append(h)
     return url
+
+a = showsome("'i believe i can fly'")
+print a

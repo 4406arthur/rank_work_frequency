@@ -1,4 +1,5 @@
 #!/usr/bin/python
+
 import sys
 import json
 from pprint import pprint
@@ -6,10 +7,11 @@ from pprint import pprint
 #print 'Argument List:', str(sys.argv)
 
 f = file(str(sys.argv[1]) ,  'r')
-g = file( "wiki.keys",'w')
+#g = file( "wiki.keys",'w')
 json_data = json.load(f)
 for item in json_data:
    #print item["content"]
-   for word in item["content"]:
+   for word in item["blue"]:
        w = word.encode('utf-8').strip()
-       print >> w+'\n', g
+       print w
+#       print >> w+'\n', g
