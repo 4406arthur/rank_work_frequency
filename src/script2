@@ -20,20 +20,5 @@ done < $1
 echo -n "$weight"
 
 }
-echo "start"
 p="websKey"
-echo "web1 running"
-calculate_weight "wiki.vector" "$p/web.1" > $OUTPUTFILENAME
-echo " web.1" >> $OUTPUTFILENAME
-for i in $(seq -f '%01g' 2 $1)
-do
-    echo "web$1 running.."
-    calculate_weight "wiki.vector" "$p/web.${i}" >> $OUTPUTFILENAME
-    echo " web.${i}" >> $OUTPUTFILENAME
-    #echo "web$i"
-done
-
-sort -n -r $OUTPUTFILENAME > r
-fin=$(sed -n '1p' < r | cut -d ' ' -f 2)
-rm $OUTPUTFILENAME r
-cp $fin result
+calculate_weight "wiki.vector" "$p/web.2" > $OUTPUTFILENAME
