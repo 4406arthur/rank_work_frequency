@@ -29,6 +29,14 @@ for f in `ls ../wiki/out`
 do
 	echo `./readWiki.py ../wiki/out/$f` >> wiki.info
 done
-#sort wiki.vector
+    #sort wiki.vector
 `./sort.sh wiki.info > wiki.vector`
+
+#web-sites key vector
+rm websKey/* -f
+for file in `ls ../finalproject/out`
+do
+    echo "`./readGg.py ../finalproject/out/$file`" > websKey/$file
+    `./sort.sh websKey/$file > websKey/$file`
+done
 

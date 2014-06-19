@@ -1,11 +1,10 @@
 #!/bin/sh
 
-rm wiki.info
+rm websKey/* -f
 
-for f in `ls ../wiki/out`
+for file in `ls ../finalproject/out`
 do
-	echo `./readWiki.py ../wiki/out/$f` >> wiki.info
+#    echo $file
+    echo "`./readGg.py ../finalproject/out/$file`" > websKey/$file
+    `./sort.sh websKey/$file > websKey/$file`
 done
-
-`./sort.sh wiki.info > wiki.vector`
-
