@@ -46,4 +46,10 @@ done
 time=2
 bestWeb=$(bash selector.sh $time)
 echo "find it $bestWeb"
-echo $(./readUrl.py "../finalproject/out/$bestWeb")
+echo $(./readUrl.py "../finalproject/out/$bestWeb") > result.url
+cat websKey/$bestWeb | tr -c '[:alpha:]' ' ' | tr ' ' '\n' | sort | uniq | sed '1d' > result.words
+#translate
+python trans_area.py result.words
+cat translated
+#finish
+

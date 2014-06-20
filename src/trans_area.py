@@ -1,10 +1,10 @@
 from azure_translate import trans
-
+import sys
 
 count=0
 container=[]
 chinese=[]
-with open ("voc.data", "r") as myfile:	
+with open (sys.argv[1], "r") as myfile:	
 	string_eng=""
 	for keyword in myfile:
 		container.append(keyword.rstrip('\n'))
